@@ -15,7 +15,7 @@ namespace :wa do
 		
 	desc "Runs all web automation tests that have finished development"
 	Cucumber::Rake::Task.new(:finished) do |t|
-    t.cucumber_opts = cucumber_opts("~dev")
+	  t.cucumber_opts = cucumber_opts("~dev")
 	end
 
 	desc "Runs all the web automation tests"
@@ -30,6 +30,6 @@ namespace :wa do
 
 	desc "Runs all web automation tests for the story. e.g. wa:story id=story-1"
 	Cucumber::Rake::Task.new(:story) do |t|
-    t.cucumber_opts = cucumber_opts("story-" + (ENV['id'] || ""))
+	  t.cucumber_opts = cucumber_opts("story-" + (ENV['id'] || ""))
 	end
 end 
