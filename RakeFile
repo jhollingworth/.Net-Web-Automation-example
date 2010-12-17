@@ -1,0 +1,35 @@
+require 'bundler/setup'
+require 'cucumber'
+require 'cucumber/rake/task'
+
+def cucumber_opts(tags = nil)
+  tags = "--tags @#{tags}" if !tags.nil?
+  "#{File.dirname(__FILE__)} --format pretty #{tags}"
+end
+
+namespace :wa do 
+	desc "Runs all web automation tests currently being developed"
+	Cucumber::Rake::Task.new(:dev) do |t|
+	  t.cucumber_opts = cucumber_opts("dev")
+	end
+		
+	desc "Runs all web automation tests that have finished development"
+	Cucumber::Rake::Task.new(:finished) do |t|
+    t.cucumber_opts = cucumber_opts("~dev")
+	end
+
+	desc "Runs all the web automation tests"
+	Cucumber::Rake::Task.new(:all) do |t|
+	  t.cucumber_opts = cucumber_opts
+	end
+
+	desc "Runs all web automation tests currently being developed by James"
+	Cucumber::Rake::Task.new(:james) do |t|
+	  t.cucumber_opts = cucumber_opts("james")
+	end
+
+	desc "Runs all web automation tests for the story. e.g. wa:story id=story-1"
+	Cucumber::Rake::Task.new(:story) do |t|
+    t.cucumber_opts = cucumber_opts("story-" + (ENV['id'] || ""))
+	end
+end 

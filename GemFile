@@ -1,0 +1,7 @@
+gem "rake"
+gem "rspec"
+gem "ruby-debug"
+gem "capybara"
+gem "cucumber"
+gem "chronic"
+gem "win32console"
